@@ -37,18 +37,19 @@ body {
 .key.active {
   background-color: white;
   color: black;
+  border-color: blanchedalmond
 }
 
 .key.active.success {
-  background-color: #2ecc71;
+  background-color: #00ff6a;
   color: white;
-  border-color: #2ecc71;
+  border-color: #00ff6a;
 }
 
 .key.active.fail {
-  background-color: #e74c3c;
+  background-color: #ff1900;
   color: white;
-  border-color: #e74c3c;
+  border-color: #ff1900;
 }
 
 @keyframes appear {

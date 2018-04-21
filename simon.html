@@ -45,6 +45,20 @@
       function getElementByKeyCode(keyCode) {
         return document.querySelector(`[data-key="${keyCode}"]`)
       }
+
+      function activate(keyCode, opts = {}){
+        const el = getElementByKeyCode(keyCode)
+        el.classList.add('active')
+        if(opts.success){
+          el.classList.add('success')          
+        } else if(opts.fail){
+          el.classList.add('fail')
+        }
+        setTimeout(() => deactivate(el), 600)
+      }
+      function deactivate(el){
+        el.className = 'key'
+      }
     </script>
   </body>
 </html>
