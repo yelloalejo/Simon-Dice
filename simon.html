@@ -29,7 +29,7 @@
         <div class="key" data-key="74">j</div>
         <div class="key" data-key="75">k</div>
         <div class="key" data-key="76">l</div>
-        <div class="key" data-key="186">ñ</div>
+        <!--<div class="key" data-key="186">ñ</div>-->
       </div>
       <div class="row last">
         <div class="key" data-key="90">z</div>
@@ -42,6 +42,19 @@
       </div>
     </div>
     <script>
+      const levels = 15
+      let keys = generateKeys(levels)
+
+      function generateKeys(levels){
+        return new Array(levels).fill(0).map(generateKey)
+      }
+      
+      function generateKey(){
+        const min = 65
+        const max = 90
+        return Math.round(Math() * (max - min) + min)        
+      }
+
       function getElementByKeyCode(keyCode) {
         return document.querySelector(`[data-key="${keyCode}"]`)
       }
