@@ -43,13 +43,13 @@ body {
 .key.active.success {
   background-color: #00ff6a;
   color: white;
-  border-color: #00ff6a;
+  border-color: blanchedalmond
 }
 
 .key.active.fail {
   background-color: #ff1900;
   color: white;
-  border-color: #ff1900;
+  border-color: blanchedalmond
 }
 
 @keyframes appear {
