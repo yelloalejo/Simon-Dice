@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Simon Dice</title>
-    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link rel="stylesheet" href="simon.css">
   </head>
   <body>
@@ -44,6 +44,33 @@
     <script>
       const levels = 15
       let keys = generateKeys(levels)
+      
+      function levelUp(currentLevel){
+        if (currentLevel == (levels)){
+          return alert('Ganaste!!')
+        }
+        alert(`Nivel ${currentLevel + 1}`)
+        for (let i=0; i <= currentLevel; i++){          
+          setTimeout(() => activate(keys[i]),
+          1000 * (i+1))               
+        }
+        let i = 0
+        let currentKey = teclas [i]
+        window.addEventListener('keydown', onkeydown)
+        function onkeydown(ev){
+          if(ev.keyCode == currentKey){
+            activate(currentKey, { success : true })
+            i++
+            if(i > currentLevel){
+              window.removeEventListener('keydowns', onkeydown)
+              setTimeout(() => levelUp(i), 1500)
+            }
+            currentKey = keys[i]
+          }
+        }
+      }
+
+      levelUp(4)
 
       function generateKeys(levels){
         return new Array(levels).fill(0).map(generateKey)
@@ -67,7 +94,7 @@
         } else if(opts.fail){
           el.classList.add('fail')
         }
-        setTimeout(() => deactivate(el), 600)
+        setTimeout(() => deactivate(el), 800)
       }
       function deactivate(el){
         el.className = 'key'
