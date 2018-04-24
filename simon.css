@@ -46,11 +46,18 @@ body {
   border-color: blanchedalmond
 }
 
+.key.active.nextKey {
+  background-color: blue;
+  color: white;
+  border-color: blanchedalmond 
+}
+
 .key.active.fail {
   background-color: #ff1900;
   color: white;
   border-color: blanchedalmond
 }
+
 
 @keyframes appear {
   0% {

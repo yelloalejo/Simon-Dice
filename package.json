@@ -1,0 +1,19 @@
+{
+  "name": "Simon Dice",
+  "version": "1.0.0",
+  "description": "Simon Dice game",
+  "scripts": {},
+  "standard": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yelloalejo/Simon-Dice.git"
+  },
+  "author": "Diego Marulanda",
+  "license": "MIT",
+  "bugs": {},
+  "homepage": "https://github.com/yelloalejo/Simon-Dice/blob/master/README.md#simon-dice",
+  "devDependencies": {},
+  "dependencies": {
+    "howler": "^2.0.9"
+  }
+}

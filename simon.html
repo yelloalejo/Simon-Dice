@@ -43,8 +43,15 @@
       </div>
     </div>
     <script src="sweetalert.min.js"></script>
+    <script src="node_modules/howler/dist/howler.js"></script>    
     <script>
-      const levels = 15
+      const activateKey = new Howl({
+      src: ['activate.mp3']
+      });
+      const nextRound = new Howl({
+      src: ['levelup.mp3']
+      });
+      const levels = 3
       let keys = generateKeys(levels)
       
       function levelUp(currentLevel){
@@ -59,9 +66,10 @@
           title: `Nivel ${currentLevel + 1}`,
           showConfirmButton: false
         })
+        nextRound.play()
         for (let i=0; i <= currentLevel; i++){          
           setTimeout(() => activate(keys[i]),
-          1000 * (i+1) + 1000)               
+          1000 * (i+1) + 1000)          
         }
         let i = 0
         let currentKey = keys [i]
@@ -76,9 +84,10 @@
               setTimeout(() => levelUp(i), 1500)
             }
             currentKey = keys[i]
-          } else{
-            activate(ev.keyCode, { fail : true})
-            window.removeEventListener('keydown', onkeydown)
+          } else{            
+            activate(ev.keyCode, { fail : true })
+            setTimeout(() => activate(currentKey, { nextKey : true }), 500)
+            window.removeEventListener('keydown', onkeydown)            
             setTimeout(() => swal({
               title: 'Has Perdido',
               text: '¿Quieres volver a jugar?',
@@ -91,7 +100,7 @@
                 keys = generateKeys(levels)
                 levelUp(0)
               }
-            }), 1000)
+            }), 2500)
           }
         }
       }
@@ -115,10 +124,13 @@
       function activate(keyCode, opts = {}){
         const el = getElementByKeyCode(keyCode)
         el.classList.add('active')
+        activateKey.play()
         if(opts.success){
           el.classList.add('success')          
         } else if(opts.fail){
           el.classList.add('fail')
+        } else if(opts.nextKey){
+          el.classList.add('nextKey')
         }
         setTimeout(() => deactivate(el), 800)
       }
