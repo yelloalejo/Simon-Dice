@@ -28,8 +28,7 @@
         <div class="key" data-key="72">h</div>
         <div class="key" data-key="74">j</div>
         <div class="key" data-key="75">k</div>
-        <div class="key" data-key="76">l</div>
-        <!--<div class="key" data-key="186">ñ</div>-->
+        <div class="key" data-key="76">l</div>        
       </div>
       <div class="row last">
         <div class="key" data-key="90">z</div>
@@ -55,22 +54,27 @@
           1000 * (i+1))               
         }
         let i = 0
-        let currentKey = teclas [i]
+        let currentKey = keys [i]
         window.addEventListener('keydown', onkeydown)
+
         function onkeydown(ev){
           if(ev.keyCode == currentKey){
             activate(currentKey, { success : true })
             i++
-            if(i > currentLevel){
-              window.removeEventListener('keydowns', onkeydown)
+            if( i > currentLevel){
+              window.removeEventListener('keydown', onkeydown)
               setTimeout(() => levelUp(i), 1500)
             }
             currentKey = keys[i]
+          } else{
+            activate(ev.keyCode, { fail : true})
+            window.removeEventListener('keydown', onkeydown)
+            setTimeout(() => alert('Has Perdido :('), 1000)
           }
         }
       }
 
-      levelUp(4)
+      levelUp(0)
 
       function generateKeys(levels){
         return new Array(levels).fill(0).map(generateKey)
