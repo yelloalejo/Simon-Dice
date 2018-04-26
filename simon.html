@@ -51,22 +51,34 @@
       const nextRound = new Howl({
       src: ['levelup.mp3']
       });
+      const failKey = new Howl({
+      src: ['fail.mp3']
+      });
+      const successKey = new Howl({
+      src: ['successKey.mp3']
+      });
+      const winner = new Howl({
+      src: ['winner.mp3']
+      });
       const levels = 3
       let keys = generateKeys(levels)
       
       function levelUp(currentLevel){
         if (currentLevel == (levels)){
+          winner.play()
           return swal({
             title: 'Has ganado!!',
             type: 'success'
-          })
+          })          
         }
         swal({
           timer: 1000,
           title: `Nivel ${currentLevel + 1}`,
           showConfirmButton: false
         })
-        nextRound.play()
+        if(currentLevel != 0){
+          nextRound.play()
+        }
         for (let i=0; i <= currentLevel; i++){          
           setTimeout(() => activate(keys[i]),
           1000 * (i+1) + 1000)          
@@ -121,16 +133,19 @@
         return document.querySelector(`[data-key="${keyCode}"]`)
       }
 
-      function activate(keyCode, opts = {}){
+      function activate(keyCode, opts = null){
         const el = getElementByKeyCode(keyCode)
-        el.classList.add('active')
-        activateKey.play()
-        if(opts.success){
-          el.classList.add('success')          
+        el.classList.add('active')                              
+        if(opts == null){
+          activateKey.play()
+        } else if(opts.success){
+          el.classList.add('success')
+          successKey.play()
         } else if(opts.fail){
           el.classList.add('fail')
+          failKey.play()
         } else if(opts.nextKey){
-          el.classList.add('nextKey')
+          el.classList.add('nextKey')          
         }
         setTimeout(() => deactivate(el), 800)
       }
