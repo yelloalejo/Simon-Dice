@@ -98,7 +98,7 @@
             currentKey = keys[i]
           } else{            
             activate(ev.keyCode, { fail : true })
-            setTimeout(() => activate(currentKey, { nextKey : true }), 500)
+            setTimeout(() => activate(currentKey, { nextKey : true }), 800)
             window.removeEventListener('keydown', onkeydown)            
             setTimeout(() => swal({
               title: 'Has Perdido',
@@ -135,9 +135,9 @@
 
       function activate(keyCode, opts = null){
         const el = getElementByKeyCode(keyCode)
-        el.classList.add('active')                              
+        el.classList.add('active')         
         if(opts == null){
-          activateKey.play()
+          activateKey.play()           
         } else if(opts.success){
           el.classList.add('success')
           successKey.play()

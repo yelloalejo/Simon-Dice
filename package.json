@@ -1,5 +1,5 @@
 {
-  "name": "Simon Dice",
+  "name": "SimonDice",
   "version": "1.0.0",
   "description": "Simon Dice game",
   "scripts": {},
@@ -15,5 +15,5 @@
   "devDependencies": {},
   "dependencies": {
     "howler": "^2.0.9"
-  }
+    }
 }
